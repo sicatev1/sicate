@@ -13,8 +13,8 @@
 
                 <p:messages id="messages" showDetail="true" autoUpdate="true" />
 
-                <p:panel header="Creación de Bodegas">
-                    <p:panelGrid columns="2" id="pnlBodega">
+                <p:panel id="pnlBodega" header="Creación de Bodegas">
+                    <p:panelGrid columns="2">
 
                         <h:outputLabel value="Codigo *" for="inptCodigo"/>
                         <p:inputText id="inptCodigo" value="#{bodegaMB.bodegaSelected.codigo}" required="true" maxlength="50" title="Codigo de la bodega" disabled="true"/>
@@ -37,10 +37,10 @@
                         </p:selectOneMenu>
 
                         <p:commandButton value="Guardar"
-                                         icon="ui-icon-disk" actionListener="#{bodegaMB.guardarBodega()}"  update=":bodegaListFrm:dtBodegas"/>
+                                         icon="ui-icon-disk" actionListener="#{bodegaMB.guardarBodega()}"  update=":bodegaListFrm:dtBodegas,:frmBodega:pnlBodega"/>
 
                         <p:commandButton value="Limpiar" 
-                                         icon="ui-icon-trash" update=":frmBodega:pnlBodega"/>
+                                         icon="ui-icon-trash" action="#{bodegaMB.limpiar()}" update=":frmBodega:pnlBodega"/>
 
                     </p:panelGrid>
                 </p:panel>
@@ -87,7 +87,9 @@
                         </p:column>
 
                         <p:column headerText="Acciones">
-                            <p:commandButton value="Editar" icon="ui-icon-pencil" update=":frmBodega:pnlBodega"/>
+                            <p:commandButton  value="Editar" icon="ui-icon-pencil" update=":frmBodega:pnlBodega">
+                                <f:setPropertyActionListener value="#{bodega}" target="#{bodegaMB.bodegaSelected}"/>
+                            </p:commandButton>
                         </p:column>
 
                     </p:dataTable>

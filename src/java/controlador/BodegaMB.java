@@ -5,16 +5,17 @@
  */
 package controlador;
 
-import dao.BodegaDAO;
+
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import modelo.Bodega;
-import dao.IBodegaDAO;
 import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ViewScoped;
 import logicaNegocio.interfaces.IControlaBodega;
 
 /**
@@ -22,32 +23,53 @@ import logicaNegocio.interfaces.IControlaBodega;
  * @author cristian gomez ruiz
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class BodegaMB {
     
     @EJB
     private IControlaBodega controlaBodegaInterface;
     
-    private Bodega bodegaSelected;
-    private List<Bodega> lstBodega;
+    private Bodega bodegaSelected=new Bodega();
+    private List<Bodega> lstBodega=new ArrayList<>();
     
-    public BodegaMB() {
-        bodegaSelected = new Bodega();
+    
+    
+    @PostConstruct
+    public void init() {
+        
 //        probar injeccion de dependencias
-//        lstBodega = controlaBodegaInterface.consultarBodegas();
-        lstBodega = new ArrayList<>();
+        lstBodega = controlaBodegaInterface.consultarBodegas();
+        
     }
     
 
     public void guardarBodega(){
         
-        boolean guardado = controlaBodegaInterface.guardarBodega(bodegaSelected);
-        if (guardado) {
+        if (bodegaSelected.getCodigo()==null) {
 
-            lstBodega = controlaBodegaInterface.consultarBodegas();
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bodega Guardada", "");
-            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+            boolean guardado = controlaBodegaInterface.guardarBodega(bodegaSelected);
+            if (guardado) {
+
+                lstBodega = controlaBodegaInterface.consultarBodegas();
+                FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bodega Guardada", "");
+                FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+                limpiar();
+            }
+        }else{
+        
+            boolean editar = controlaBodegaInterface.editarBodega(bodegaSelected);
+            if (editar) {
+
+                lstBodega = controlaBodegaInterface.consultarBodegas();
+                FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bodega Editada", "");
+                FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+                limpiar();
+            }
+        
+        
         }
+        
+        
     }
     
     public void limpiar(){

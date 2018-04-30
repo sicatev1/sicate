@@ -18,4 +18,5 @@ public interface IControlaBodega {
     
      public List<Bodega> consultarBodegas();
      public boolean guardarBodega(Bodega bodega);
+     public boolean editarBodega(Bodega bodega);
 }

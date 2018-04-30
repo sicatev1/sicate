@@ -39,9 +39,9 @@ public class ConexionSingleton {
     public boolean crearConexion() {
         try {
 
-            ConexionSingleton.urlBaseDatos = "jdbc:mysql://localhost:3303/bdsicate";
+            ConexionSingleton.urlBaseDatos = "jdbc:mysql://localhost:3306/sicate";
             ConexionSingleton.usuario = "root";
-            ConexionSingleton.password = "Temporal345";
+            ConexionSingleton.password = "admin";
             ConexionSingleton.driver = "com.mysql.jdbc.Driver";
 
             Class.forName(

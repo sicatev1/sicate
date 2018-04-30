@@ -16,5 +16,6 @@ public interface IBodegaDAO {
 // 
     public List<Bodega> consultarTodos();
     public boolean guardarBodega(Bodega bodega);
+    public boolean editarBodega(Bodega bodega);
 //    public void eliminar(Bodega destinatario);
 }
