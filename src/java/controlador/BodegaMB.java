@@ -72,6 +72,10 @@ public class BodegaMB {
         
     }
     
+    public String saludar(){
+        return "Bienvenido a SICATE";
+    }
+    
     public void limpiar(){
         bodegaSelected = new Bodega();
     }
