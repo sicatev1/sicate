@@ -52,6 +52,11 @@ public class Bodega implements Serializable{
         this.direccion = direccion;
     }
 
+    @Override
+    public String toString() {
+        return nombre; //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     
     

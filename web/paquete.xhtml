@@ -24,7 +24,12 @@
              <td>  <h:outputLabel value="Bodega" for="inptBodega"/> </td> 
              <p:inputText />       
               <p:separator />
-              <p:splitButton action="#{requestInfo.goNextPage()}" value="Consultar" icon="ui-icon-disk"/> 
+              
+              <p:selectOneMenu id="somBodegas">
+                  <f:selectItem itemLabel="Seleccione" itemValue="Seleccione"/>
+                  <f:selectItems value="#{paqueteMB.lstBodega}" var="bodega" />
+              </p:selectOneMenu>
+              
              <p:separator />              
              <td>  <h:outputLabel value="numeroreferencia" for="inptBodega"/> </td> 
              <p:inputText />             

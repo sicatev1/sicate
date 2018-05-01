@@ -14,8 +14,11 @@ import javax.faces.context.FacesContext;
 import modelo.Paquete;
 import dao.IPaqueteDAO;
 import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import logicaNegocio.interfaces.IControlaBodega;
 import logicaNegocio.interfaces.IControlaPaquete;
+import modelo.Bodega;
 
 @ManagedBean
 @RequestScoped
@@ -23,13 +26,18 @@ public class PaqueteMB {
 
     @EJB
     private IControlaPaquete controlaPaqueteInterface;
+    
+    @EJB
+    private IControlaBodega controlaBodegaInterface;
 
     private Paquete paqueteSelected;
     private List<Paquete> lstPaquete;
+    private List<Bodega> lstBodega;
 
     public PaqueteMB() {
         paqueteSelected = new Paquete();
         lstPaquete = new ArrayList<>();
+        lstBodega = new ArrayList<>();
     }
 
     public void guardarPaquete() {
@@ -42,7 +50,18 @@ public class PaqueteMB {
             FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         }
     }
-
+    
+    @PostConstruct
+    public void init(){
+        consultarBodegas();
+    }
+    
+    
+    public void consultarBodegas(){
+        
+        lstBodega = controlaBodegaInterface.consultarBodegas();
+    }
+    
     public void limpiar() {
         paqueteSelected = new Paquete();
     }
@@ -62,5 +81,17 @@ public class PaqueteMB {
     public void setLstPaquete(List<Paquete> lstPaquete) {
         this.lstPaquete = lstPaquete;
     }
+
+    public List<Bodega> getLstBodega() {
+        return lstBodega;
+    }
+
+    public void setLstBodega(List<Bodega> lstBodega) {
+        this.lstBodega = lstBodega;
+    }
+    
+    
+    
+    
 
 }
