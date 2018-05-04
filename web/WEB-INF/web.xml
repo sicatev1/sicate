@@ -4,12 +4,10 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-    
     <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>blitzer</param-value>
     </context-param>
-    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -27,4 +25,16 @@
     <welcome-file-list>
         <welcome-file>faces/home.xhtml</welcome-file>
     </welcome-file-list>
+    <ejb-local-ref>
+        <ejb-ref-name>controlaBodega</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>logicaNegocio.interfaces.IControlaBodega</local>
+        <ejb-link>#ControlaBodega</ejb-link>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>controlaBodega1</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <local>logicaNegocio.interfaces.IControlaBodega</local>
+        <ejb-link>#ControlaBodega</ejb-link>
+    </ejb-local-ref>
 </web-app>
