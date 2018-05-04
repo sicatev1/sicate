@@ -62,7 +62,7 @@ public class ControlaBodegaTest {
 
     @Test
     public void testLimpiar() throws Exception {
-        System.out.println("consultarBodegas");
+        System.out.println("test saludo");
 //         EJBContainer container = javax.ejb.embeddable.EJBContainer.createEJBContainer();
 //         BodegaMB instance = (BodegaMB)container.getContext().lookup("java:global/classes/BodegaMB");
 

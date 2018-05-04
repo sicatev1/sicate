@@ -19,11 +19,11 @@ public class ControlaBodega implements IControlaBodega {
     //*prueba sin conexion bd/
     public List<Bodega> consultarBodegas() {
 
-        List<Bodega> listBodega = new ArrayList<Bodega>();
-        listBodega.add(new Bodega("1", "Primer Piso", "12448884", "no existe"));
+//        List<Bodega> listBodega = new ArrayList<Bodega>();
+//        listBodega.add(new Bodega("1", "Primer Piso", "12448884", "no existe"));
 
-//        return bodegaDAO.consultarTodos();
-        return listBodega;
+        return bodegaDAO.consultarTodos();
+//        return listBodega;
     }
 
     public boolean guardarBodega(Bodega bodega) {
